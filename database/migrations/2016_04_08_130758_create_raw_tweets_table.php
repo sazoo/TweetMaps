@@ -14,6 +14,7 @@ class CreateRawTweetsTable extends Migration
     {
         Schema::create('raw_tweets', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tweet_id');
             $table->timestamps();
 			$table->text('raw');
         });

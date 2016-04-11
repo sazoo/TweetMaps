@@ -47,6 +47,7 @@ class Kernel extends ConsoleKernel
 
                     $rawTweet = new RawTweet;
                     $rawTweet->raw = $raw;
+                    $rawTweet->tweet_id = $tweetArr['id'];
 
                     $rawTweet->save();
                 }catch(\Exception $e) {
