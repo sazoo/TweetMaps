@@ -49,7 +49,7 @@ class Kernel extends ConsoleKernel
                     $rawTweet->raw = $raw;
 
                     $rawTweet->save();
-                }catch(Exception $e) {
+                }catch(\Exception $e) {
                     Log::error($e->getMessage());
                 }
 			}
