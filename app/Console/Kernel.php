@@ -30,24 +30,24 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-			while(Redis::llen('tweets') > 0){
+            while(Redis::llen('tweets') > 0){
                 try{
                     $raw = Redis::lpop('tweets');
                     $tweetArr = json_decode($raw, true);
-
-                    $tweet = new Tweet;
-                    $tweet->tweet_id = $tweetArr['id'];
-                    $tweet->date_created = $tweetArr['created_at'];
                     if(isset($tweetArr->{'coordinates'})){
+                        $tweet = new Tweet;
+                        $tweet->tweet_id = $tweetArr['id'];
+                        $tweet->date_created = $tweetArr['created_at'];
+
                         $tweet->longitude = $tweetArr['coordinates']['coordinates'][0];
                         $tweet->latitude = $tweetArr['coordinates']['coordinates'][1];
+
+                        $tweet->user_id = $tweetArr['user']['id'];
+                        $tweet->tweet = $tweetArr['text'];
+                        $tweet->screen_name = $tweetArr['user']['screen_name'];
+
+                        $tweet->save();
                     }
-                    $tweet->user_id = $tweetArr['user']['id'];
-                    $tweet->tweet = $tweetArr['text'];
-                    $tweet->screen_name = $tweetArr['user']['screen_name'];
-
-                    $tweet->save();
-
                     $rawTweet = new RawTweet;
                     $rawTweet->raw = $raw;
                     $rawTweet->tweet_id = $tweetArr['id'];
@@ -56,7 +56,7 @@ class Kernel extends ConsoleKernel
                 }catch(\Exception $e) {
                     Log::error($e->getMessage());
                 }
-			}
-		})->everyMinute();
+            }
+        })->everyMinute();
     }
 }
