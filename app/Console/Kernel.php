@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
                 try{
                     $raw = Redis::lpop('tweets');
                     $tweetArr = json_decode($raw, true);
-                    if(isset($tweetArr->{'coordinates'})){
+                    if(isset($tweetArr->{'geo'})){
                         $tweet = new Tweet;
                         $tweet->tweet_id = $tweetArr['id'];
                         $tweet->date_created = $tweetArr['created_at'];
