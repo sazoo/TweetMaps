@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
                     $tweet = new Tweet;
                     $tweet->tweet_id = $tweetArr['id'];
                     $tweet->date_created = $tweetArr['created_at'];
-                    if(isset($tweetArr['coordinates'])){
+                    if(isset($tweetArr->{'coordinates'})){
                         $tweet->longitude = $tweetArr['coordinates']['coordinates'][0];
                         $tweet->latitude = $tweetArr['coordinates']['coordinates'][1];
                     }
