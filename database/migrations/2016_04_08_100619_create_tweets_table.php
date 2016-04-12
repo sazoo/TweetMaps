@@ -20,7 +20,8 @@ class CreateTweetsTable extends Migration
 			$table->string('user_id');
 			$table->text('tweet');
 			$table->date('date_created');
-			$table->string('coordinates')->nullable();;
+			$table->string('longitude')->nullable();;
+			$table->string('latitude')->nullable();;
             $table->timestamps();
         });
     }
