@@ -27,19 +27,13 @@
     </style>
 
     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="markcluster.js"></script>
     <script src="data.json"></script>
-    <script>
-        var script = '<script type="text/javascript" src="../src/markerclusterer';
-        if (document.location.search.indexOf('compiled') !== -1) {
-            script += '_compiled';
-        }
-        script += '.js"><' + '/script>';
-        document.write(script);
-    </script>
+
 
     <script>
         function initialize() {
-            var center = new google.maps.LatLng(37.4419, -122.1419);
+            var center = new google.maps.LatLng(12.8797, 121.7740);
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 3,
                 center: center,
