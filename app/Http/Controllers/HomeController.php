@@ -12,6 +12,6 @@ class HomeController extends Controller
 {
     public function getLatestTweets(){
         $tweets = \DB::table('tweets') ->where(\DB::raw('date >= DATE_SUB(NOW(), INTERVAL 1 HOUR)'));
-        return json($tweets);
+        return response()->json($tweets);
     }
 }
