@@ -11,7 +11,7 @@ use App\Tweet;
 class HomeController extends Controller
 {
     public function getLatestTweets(){
-        $tweets = Tweet::where('created_at >= DATE_SUB(NOW(), INTERVAL 1 HOUR)')->count();
+        $tweets = Tweet::where('created_at', '>=', 'DATE_SUB(NOW(), INTERVAL 1 HOUR)')->count();
         //var_dump($count);
         //$tweets = Tweet::orderBy('created_at', 'DESC')->take($count)->get();
         return response()->json($tweets);
