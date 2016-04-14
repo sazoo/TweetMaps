@@ -37,7 +37,7 @@
             $.ajax({
                 'async': false,
                 'global': false,
-                'url': 'http://localhost:8000/getlatesttweets',
+                'url': 'http://www.meraqi.ninja/getlatesttweets',
                 'dataType': "json",
                 'success': function (data) {
                     json = data;
