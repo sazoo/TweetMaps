@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //get tweets
         $schedule->call(function () {
             while(Redis::llen('tweets') > 0){
                 try{
@@ -60,6 +61,11 @@ class Kernel extends ConsoleKernel
                     Log::error($e->getMessage());
                 }
             }
+        })->everyMinute();
+
+        //update tags to search
+        $schedule->call(function (){
+
         })->everyMinute();
     }
 }

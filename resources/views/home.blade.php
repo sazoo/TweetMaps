@@ -26,12 +26,26 @@
         }
     </style>
 
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="markcluster.js"></script>
-    <script src="data.json"></script>
 
 
     <script>
+        var data = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url': 'http://localhost:8000/getlatesttweets',
+                'dataType': "json",
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+        })();
+
         function initialize() {
             var center = new google.maps.LatLng(12.8797, 121.7740);
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -40,12 +54,15 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
             var markers = [];
-            for (var i = 0; i < 100; i++) {
-                var dataPhoto = data.photos[i];
+            //console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                var dataPhoto = data[i];
                 var latLng = new google.maps.LatLng(dataPhoto.latitude,
                         dataPhoto.longitude);
+                var tweet = dataPhoto.tweet;
                 var marker = new google.maps.Marker({
-                    position: latLng
+                    position: latLng,
+                    content: tweet
                 });
                 markers.push(marker);
             }

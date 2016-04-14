@@ -15,7 +15,7 @@ Event::listen('illuminate.query', function($query)
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('getlatesttweets', 'HomeController@getLatestTweets');
