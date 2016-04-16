@@ -20,7 +20,9 @@
             box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
             width: 100%;
         }
-        
+        #map {
+            width: 600px;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
