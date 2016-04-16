@@ -63,13 +63,14 @@
                 var tweet = dataPhoto.tweet;
                 var marker = new google.maps.Marker({
                     position: latLng,
-                    content: tweet
+                    map: map,
+                    title: tweet
                 });
 
-                google.maps.event.addListener(marker, 'click', (function() {
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                        infowindow.setContent(dataPhoto.tweet);
-                        infowindow.open(map, this);
+                        infowindow.setContent(tweet);
+                        infowindow.open(map, marker);
                     }
                 })(marker, i));
 
