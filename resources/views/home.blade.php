@@ -21,8 +21,7 @@
             width: 600px;
         }
         #map {
-            width: 600px;
-            height: 400px;
+            width: 100%;
         }
     </style>
 
