@@ -72,7 +72,7 @@
                         infowindow.setContent(tweet);
                         infowindow.open(map, marker);
                     }
-                })(marker, i));
+                }));
 
                 markers.push(marker);
             }
