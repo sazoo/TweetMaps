@@ -55,6 +55,7 @@
             });
             var markers = [];
             //console.log(data);
+            var infowindow = new google.maps.InfoWindow();
             for (var i = 0; i < data.length; i++) {
                 var dataPhoto = data[i];
                 var latLng = new google.maps.LatLng(dataPhoto.latitude,
