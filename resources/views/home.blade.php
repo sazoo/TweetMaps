@@ -66,10 +66,10 @@
                     content: tweet
                 });
 
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                google.maps.event.addListener(marker, 'click', (function() {
                     return function() {
                         infowindow.setContent(dataPhoto.tweet);
-                        infowindow.open(map, marker);
+                        infowindow.open(map, this);
                     }
                 })(marker, i));
 
