@@ -22,6 +22,7 @@
         }
         #map {
             width: 600px;
+            height: 400px;
         }
     </style>
 
