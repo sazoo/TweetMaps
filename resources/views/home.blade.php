@@ -18,17 +18,10 @@
             -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
             -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
             box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
-            width: 600px;
+            width: 100%;
         }
         #map {
-            opacity:0.8;
-            background-color:#ccc;
-            position:fixed;
-            width:100%;
-            height:100%;
-            top:0px;
-            left:0px;
-            z-index:1000;
+            width: 100%;
         }
     </style>
 
