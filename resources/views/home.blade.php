@@ -64,6 +64,14 @@
                     position: latLng,
                     content: tweet
                 });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(dataPhoto.tweet);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
                 markers.push(marker);
             }
             var markerCluster = new MarkerClusterer(map, markers);
