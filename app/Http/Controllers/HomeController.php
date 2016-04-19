@@ -10,6 +10,11 @@ use App\Tweet;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cors');
+    }
+
     public function getLatestTweets(){
 
         $count = \DB::table('tweets')
