@@ -12,17 +12,16 @@
         }
         #map-container {
             padding: 6px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #ccc #ccc #999 #ccc;
             -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
             -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
             box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
-            width: 600px;
+            width: 100%;
+            height: 100%;
         }
         #map {
-            width: 600px;
-            height: 400px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
     </style>
 
@@ -55,6 +54,7 @@
             });
             var markers = [];
             //console.log(data);
+            var infowindow = new google.maps.InfoWindow();
             for (var i = 0; i < data.length; i++) {
                 var dataPhoto = data[i];
                 var latLng = new google.maps.LatLng(dataPhoto.latitude,
@@ -62,8 +62,17 @@
                 var tweet = dataPhoto.tweet;
                 var marker = new google.maps.Marker({
                     position: latLng,
-                    content: tweet
+                    map: map,
+                    title: tweet
                 });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent("<p>" + tweet + "</p>");
+                        infowindow.open(map, marker);
+                    }
+                }));
+
                 markers.push(marker);
             }
             var markerCluster = new MarkerClusterer(map, markers);
