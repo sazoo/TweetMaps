@@ -9,6 +9,7 @@ use Log;
 use Redis;
 use App\Tweet;
 use App\RawTweet;
+use Thujohn\Twitter\Twitter;
 
 class Kernel extends ConsoleKernel
 {
@@ -64,6 +65,13 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         //update tags to search
+        $schedule->call(function (){
+            $trends = json_decode(Twitter::getTrendsPlace(23424934));
+            foreach($trends as $trend){
+                Redis::lpush('tweets', $trend['name']);
+            }
+        })->everyFiveMinutes();
+
         $schedule->call(function (){
             \DB::table('tweets')
                 ->where('created_at', '<=', \DB::raw('DATE_SUB(NOW(), INTERVAL 5 HOUR)'))
