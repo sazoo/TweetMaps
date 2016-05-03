@@ -68,9 +68,11 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $trends = json_decode(Twitter::getTrendsPlace(['id' => 23424934, 'format' => 'json']), true);
             $data = $trends[0]['trends'];
+
+            Redis::del('tags');
             foreach($data as $trend){
                 //var_dump($trend['name']);
-                Redis::lpush('tweets', $trend['name']);
+                Redis::lpush('tags', $trend['name']);
             }
         })->everyTenMinutes();
 
