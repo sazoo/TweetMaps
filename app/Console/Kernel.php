@@ -66,7 +66,7 @@ class Kernel extends ConsoleKernel
 
         //update tags to search
         $schedule->call(function (){
-            $trends = json_decode(Twitter::getTrendsPlace(23424934));
+            $trends = json_decode(Twitter::getTrendsPlace(['id' => 23424934, 'format' => 'json']));
             foreach($trends as $trend){
                 Redis::lpush('tweets', $trend['name']);
             }
