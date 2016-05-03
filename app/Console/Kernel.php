@@ -9,7 +9,7 @@ use Log;
 use Redis;
 use App\Tweet;
 use App\RawTweet;
-use Thujohn\Twitter\Twitter;
+use Twitter;
 
 class Kernel extends ConsoleKernel
 {
