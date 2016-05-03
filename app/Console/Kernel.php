@@ -65,7 +65,9 @@ class Kernel extends ConsoleKernel
 
         //update tags to search
         $schedule->call(function (){
-
-        })->everyMinute();
+            \DB::table('tweets')
+                ->where('created_at', '<=', \DB::raw('DATE_SUB(NOW(), INTERVAL 5 HOUR)'))
+                ->delete();
+        })->everyFiveMinutes();
     }
 }
